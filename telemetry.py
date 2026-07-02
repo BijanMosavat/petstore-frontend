@@ -7,6 +7,9 @@ from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.sdk.resources import Resource
 from comprehend_telemetry import ComprehendSDK
 
+COMPREHEND_TOKEN = os.getenv("COMPREHEND_SDK_TOKEN") or "comprehend_sojtIY3ZQUWSAt9qi8yKyOYTaIwTPsAdTICvL7H5ZkJ5XFka"
+os.environ["COMPREHEND_SDK_TOKEN"] = COMPREHEND_TOKEN
+
 resource = Resource.create({
     "service.name": "my-python-service",
     "service.namespace": "production",
