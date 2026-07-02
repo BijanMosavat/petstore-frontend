@@ -1,0 +1,13 @@
+# Local environment files
+.env
+.env.*
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editor files
+.vscode/
+
+# Secrets and local config
+*.local

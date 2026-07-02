@@ -7,8 +7,9 @@ from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.sdk.resources import Resource
 from comprehend_telemetry import ComprehendSDK
 
-COMPREHEND_TOKEN = os.getenv("COMPREHEND_SDK_TOKEN") or "comprehend_sojtIY3ZQUWSAt9qi8yKyOYTaIwTPsAdTICvL7H5ZkJ5XFka"
-os.environ["COMPREHEND_SDK_TOKEN"] = COMPREHEND_TOKEN
+token = os.getenv("COMPREHEND_SDK_TOKEN")
+if not token:
+    raise RuntimeError("COMPREHEND_SDK_TOKEN must be set in the environment before importing telemetry")
 
 resource = Resource.create({
     "service.name": "my-python-service",
@@ -19,7 +20,7 @@ resource = Resource.create({
 
 comprehend = ComprehendSDK(
     organization='comprehend',
-    token=os.getenv("COMPREHEND_SDK_TOKEN"),
+    token=token,
     # debug=True  # Optional: enable debug logging
 )
 
